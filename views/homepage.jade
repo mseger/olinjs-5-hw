@@ -16,8 +16,8 @@ block content
 			input(type="radio", name="color", value="blue")
 			label Blue Background
 			br
-			input(type="radio", name="color", value="red")
-			label Red Background
+			input(type="radio", name="color", value="white")
+			label White Background
 			br
 			input(type="radio", name="color", value="green")
 			label Green Background
@@ -26,3 +26,10 @@ block content
 			label Yellow Background
 			br
 			input(type="submit", value="Change Profile Background Color")
+
+//		div
+			h2 Your Quotes
+			each quote, i in #{curr_user.quotes}
+				div(value=quote, id="quote")
+					input(type="checkbox", name="quotes", value=i)
+						| #{quote}
