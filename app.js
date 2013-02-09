@@ -36,11 +36,14 @@ app.get('/', homepage.loginLandingPage);
 app.get('/login', Facebook.loginRequired(), FBUser.login);
 app.get('/homepage', Facebook.loginRequired(), homepage.main);
 app.get('/users', user.list);
+app.get('/personalize/color', homepage.updateColor);
+app.get('/users/delete_all', FBUser.delete_all);
 
 
 // PUTS
 app.post('/login', Facebook.loginRequired(), FBUser.login);
 app.post('/logout', Facebook.loginRequired(), FBUser.logout);
+app.post('/personalize/color', homepage.updateColor_post);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

@@ -2,6 +2,7 @@ extends layout
 
 block content
 	div(value=curr_user, id="welcome-dialog")
+		style body {background-color: #{curr_user.profileBackground}}
 		h1 Welcome to the MyFacebookSpace 
 		b #{curr_user.name}
 		br
@@ -9,3 +10,19 @@ block content
 		img(src="#{curr_user.profPicURL}", id="profPic")
 		form(name="logout-form", action="/logout", method="post")
 			input(type="submit", value="Log out of Account")
+
+		form(name="personalize-my-page", action="/personalize/color", method="post", id="color_personalize")
+			h2 Profile Background Color
+			input(type="radio", name="color", value="blue")
+			label Blue Background
+			br
+			input(type="radio", name="color", value="red")
+			label Red Background
+			br
+			input(type="radio", name="color", value="green")
+			label Green Background
+			br
+			input(type="radio", name="color", value="yellow")
+			label Yellow Background
+			br
+			input(type="submit", value="Change Profile Background Color")
