@@ -34,12 +34,13 @@ app.configure('development', function(){
 // GETS
 app.get('/', homepage.loginLandingPage);
 app.get('/login', Facebook.loginRequired(), FBUser.login);
-app.get('/homepage', homepage.main);
+app.get('/homepage', Facebook.loginRequired(), homepage.main);
 app.get('/users', user.list);
 
 
 // PUTS
 app.post('/login', Facebook.loginRequired(), FBUser.login);
+app.post('/logout', Facebook.loginRequired(), FBUser.logout);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

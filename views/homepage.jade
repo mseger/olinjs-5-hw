@@ -7,3 +7,5 @@ block content
 		br
 		br
 		img(src="#{curr_user.profPicURL}", id="profPic")
+		form(name="logout-form", action="/logout", method="post")
+			input(type="submit", value="Log out of Account")

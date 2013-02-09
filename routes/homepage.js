@@ -4,5 +4,11 @@ exports.loginLandingPage = function(req, res){
 	res.render('loginLandingPage', {title: "Login with Facebook"});
 }
 exports.main = function(req, res){
-	res.render('homepage', {title: "Welcome to MyFacebookSpace!", curr_user: req.session.user});
+	if(req.session.user !== null){
+		res.render('homepage', {title: "Welcome to MyFacebookSpace!", curr_user: req.session.user});
+	}else{
+		res.redirect('/');
+	}
 };
+
+
