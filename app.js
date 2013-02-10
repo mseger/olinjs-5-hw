@@ -44,6 +44,7 @@ app.get('/users/delete_all', FBUser.delete_all);
 app.post('/login', Facebook.loginRequired(), FBUser.login);
 app.post('/logout', Facebook.loginRequired(), FBUser.logout);
 app.post('/personalize/color', homepage.updateColor_post);
+app.post('/personalize/quotes', homepage.updateQuotes_post);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

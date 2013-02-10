@@ -27,9 +27,14 @@ block content
 			br
 			input(type="submit", value="Change Profile Background Color")
 
-//		div
+		div
 			h2 Your Quotes
-			each quote, i in #{curr_user.quotes}
-				div(value=quote, id="quote")
-					input(type="checkbox", name="quotes", value=i)
-						| #{quote}
+			if curr_user.quotes == []
+				each quote, i in curr_user.quotes
+					div(value=quote) #{curr_user.quotes[i]}
+				form(name="remove-quotes", action="/personalize/quotes", method="post", id="quotes_personalize")
+					input(type="submit", value="Remove Quotes from Wall")
+			else
+				form(name="remove-quotes", action="/personalize/quotes", method="post", id="quotes_personalize")
+					input(type="submit", value="Add Quotes to Wall")
+

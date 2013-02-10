@@ -30,5 +30,21 @@ exports.updateColor_post = function(req, res){
 	});
 }; 
 
+// post color update to profile settings
+exports.updateQuotes_post = function(req, res){
+	var currUser = FBUser.findOne({name: req.session.user.name}).exec(function(err, user){
+		if(err)
+			console.log("Unable to update user profile quotes settings.");
+		user.quotes = [];
+		user.save(function (err){
+			if(err)
+				return console.log("Can't save updated user.");
+			// res.render('homepage', {title: "Welcome to MyFacebookSpace!", curr_user: user});
+			req.session.user = user;
+			res.redirect("/homepage");
+		}); 
+	});
+}; 
+
 
 
