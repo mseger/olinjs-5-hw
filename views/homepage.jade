@@ -31,6 +31,7 @@ block content
 			h2 Your Quotes
 			case curr_user.quotes
 				when ""
+					h3 No quotes to display- do you have any quotes on your Facebook page? 
 					form(name="add-quotes", action="/personalize/quotes/add", method="post", id="quotes_personalize_add")
 						input(type="submit", value="Add Quotes to Wall")
 				default
