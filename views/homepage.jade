@@ -29,12 +29,12 @@ block content
 
 		div
 			h2 Your Quotes
-			if curr_user.quotes == []
-				each quote, i in curr_user.quotes
-					div(value=quote) #{curr_user.quotes[i]}
-				form(name="remove-quotes", action="/personalize/quotes", method="post", id="quotes_personalize")
-					input(type="submit", value="Remove Quotes from Wall")
-			else
-				form(name="remove-quotes", action="/personalize/quotes", method="post", id="quotes_personalize")
-					input(type="submit", value="Add Quotes to Wall")
+			case curr_user.quotes
+				when ""
+					form(name="add-quotes", action="/personalize/quotes/add", method="post", id="quotes_personalize_add")
+						input(type="submit", value="Add Quotes to Wall")
+				default
+					| #{curr_user.quotes}
+					form(name="remove-quotes", action="/personalize/quotes", method="post", id="quotes_personalize")
+						input(type="submit", value="Remove Quotes from Wall")
 

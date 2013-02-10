@@ -45,6 +45,7 @@ app.post('/login', Facebook.loginRequired(), FBUser.login);
 app.post('/logout', Facebook.loginRequired(), FBUser.logout);
 app.post('/personalize/color', homepage.updateColor_post);
 app.post('/personalize/quotes', homepage.updateQuotes_post);
+app.post('/personalize/quotes/add', homepage.updateQuotes_post_add);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

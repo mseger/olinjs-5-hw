@@ -30,7 +30,7 @@ exports.updateColor_post = function(req, res){
 	});
 }; 
 
-// post color update to profile settings
+// post quote remove update to profile settings
 exports.updateQuotes_post = function(req, res){
 	var currUser = FBUser.findOne({name: req.session.user.name}).exec(function(err, user){
 		if(err)
@@ -39,12 +39,37 @@ exports.updateQuotes_post = function(req, res){
 		user.save(function (err){
 			if(err)
 				return console.log("Can't save updated user.");
-			// res.render('homepage', {title: "Welcome to MyFacebookSpace!", curr_user: user});
 			req.session.user = user;
-			res.redirect("/homepage");
+			res.render('homepage', {title: "Welcome to MyFacebookSpace!", curr_user: user});
 		}); 
 	});
 }; 
+
+// post quotes add update to profile settings
+exports.updateQuotes_post_add = function(req, res){
+	var currUser = FBUser.findOne({name: req.session.user.name}).exec(function (err, user){
+		if (err)
+			console.log("Couldn't modify user's quotes settings");
+		req.facebook.api('/me', function(err, data){
+			user.quotes = data.quotes;
+			user.save(function (err){
+				if (err)
+					return console.log("Couldn't save your user");
+				req.session.user = user;
+				res.render('homepage', {title: "Welcome to MyFacebookSpace!", curr_user: user});
+			});
+		});
+	});
+};
+
+
+
+
+
+
+
+
+
 
 
 

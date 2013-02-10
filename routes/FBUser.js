@@ -10,15 +10,15 @@ exports.login = function (req, res) {
   				res.redirect('/homepage');
 	  		}else{
 	  			var loggedInUser = new FBUser({name: data.name, profPicURL: picData.data.url, profileBackground: "white", quotes: data.quotes});
-	  				loggedInUser.save(function (err){
+	  			loggedInUser.save(function (err){
 			  			if(err)
 			  				console.log("Unable to save new user.");
 			  		 	req.session.user = loggedInUser; 
 			  			res.redirect('/homepage');
-	  				});
-	  			}
-	  		});
-  		});
+	  			});
+	  		}
+	  	});
+  	});
   });
 };
 
